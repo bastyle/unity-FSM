@@ -65,12 +65,11 @@ public class TrollFSM : MonoBehaviour
 
         //TRANSITION CHECKS
         //T5 - Enemy Dead or Lost Sight
-        if (EnemyDeadOrLostSight())
+        if (Utilities.EnemyDeadOrLostSight(enemy.GetComponent<Health>(), enemy, this.gameObject, cosOfFOVover2InRAD))
         {
             ChangeState(TrollStates.REALIGN_WAYPOINT);
         }
         //T6 - dit>2
-        // if (!CheckDistanceLess(2))
         if (!Utilities.CheckDistanceLess(this.transform.position, enemy.transform.position, Utilities.DISTANCE_TO_FIGHT))
         {
             ChangeState(TrollStates.CHASE_ENEMY);
@@ -101,7 +100,8 @@ public class TrollFSM : MonoBehaviour
         }
 
         //T5 - Check Enemy dead, or lost from sight
-        if (EnemyDeadOrLostSight())
+        //if (EnemyDeadOrLostSight())
+        if(Utilities.EnemyDeadOrLostSight(enemy.GetComponent<Health>(), enemy, this.gameObject, cosOfFOVover2InRAD))
         {
             ChangeState(TrollStates.SEEKWAY_POINT);
 
@@ -109,30 +109,7 @@ public class TrollFSM : MonoBehaviour
     }
 
     
-    private bool EnemyDeadOrLostSight()
-    {
-        if (EnemyDead() || LostSight())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool LostSight()
-    {
-        return !SeeEnemy();
-    }
-
-    private bool EnemyDead()
-    {
-        //TODO: Add a Health.cs script to the enemy with a public method IsAlive
-        Health health = enemy.GetComponent<Health>();
-        bool alive = health.IsAlive();
-        return !alive;
-    }
+   
 
     private void DoChaseEnemy()
     {
@@ -185,7 +162,7 @@ public class TrollFSM : MonoBehaviour
 
         //TRANSITIONS
         //T1 - Aligned?
-        if (IsAligned())
+        if(Utilities.IsAligned(this.transform.position, waypoints[nextWaypointIndex].position, this.transform.forward, 0.01f))
         {
             ChangeState(TrollStates.SEEKWAY_POINT);
         }
@@ -196,40 +173,9 @@ public class TrollFSM : MonoBehaviour
         currentState = newState;
     }
 
-    private bool IsAligned()
-    {
 
-        //int i1 = (nextWaypointIndex + 1) % waypoints.Length;
-        Vector3 headingToNextWP = waypoints[nextWaypointIndex].position - this.transform.position;
-        headingToNextWP.Normalize();
-        float diff = Vector3.Distance(headingToNextWP, this.transform.forward);
-        if (diff < 0.01)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
 
-    }
 
-    private bool IsAligned2()
-    {
-
-        //int i1 = (nextWaypointIndex + 1) % waypoints.Length;
-        Vector3 headingToNextWP = waypoints[nextWaypointIndex].position - this.transform.position;
-        headingToNextWP.Normalize();
-        float diff = Vector3.Distance(headingToNextWP, this.transform.forward);
-        if (diff < 0.01)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     private void DoRealign()
     {

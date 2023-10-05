@@ -113,11 +113,9 @@ public class TrollFSMFactoryPattern : MonoBehaviour
         if (seconds >= secondsToCelebrate)
         {
             stateMachine.ChangeState(REALIGN_WAY_POINT);
-            //transform.GetComponent<Rigidbody>().isKinematic = true;
         }
         else
         {
-            Debug.Log("1..........................................................");
             GameObject fw = Instantiate(fireworkPrefab);
             fw.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
             Destroy(fw, 1);
