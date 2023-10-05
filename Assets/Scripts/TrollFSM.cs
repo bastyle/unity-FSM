@@ -22,15 +22,12 @@ public class TrollFSM : MonoBehaviour
     {
         cosOfFOVover2InRAD = Mathf.Cos(FOVinDEG / 2f * Mathf.Deg2Rad);
         maxAngularSpeedInRadPerSec = maxAngularSpeedInDegPerSec * Mathf.Deg2Rad;
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
         FSM();
-
     }
 
     private void FSM()
@@ -188,18 +185,13 @@ public class TrollFSM : MonoBehaviour
         {
             int i1 = (i + 1) % waypoints.Length;
             Gizmos.DrawLine(waypoints[i].position, waypoints[i1].position);
-
-
         }
-
         Gizmos.color = Color.cyan;
         Vector3 from = this.transform.position;
         Vector3 to = this.transform.position + this.transform.forward * 10;
         //Vector3 fovMinus=Vector3.RotateTowards(fro)
         Gizmos.DrawLine(from, to);
-
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(waypoints[nextWaypointIndex].position, 1.2f);
-
     }
 }
