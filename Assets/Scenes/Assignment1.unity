@@ -190,7 +190,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 924de8bd55fd6054b9470b3ec5c766c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 546438846}
   - component: {fileID: 546438845}
   m_Layer: 0
-  m_Name: Waypoint (3)
+  m_Name: WaypointFSM3
   m_TagString: WaypointFSM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,7 +421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652023415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.89, y: 1, z: 14.67}
+  m_LocalPosition: {x: 14.43, y: 1, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 804497450}
   - component: {fileID: 804497449}
   m_Layer: 0
-  m_Name: Waypoint (1)
+  m_Name: WaypointFSM1
   m_TagString: WaypointFSM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,7 +716,6 @@ GameObject:
   - component: {fileID: 1239295261}
   - component: {fileID: 1239295260}
   - component: {fileID: 1239295259}
-  - component: {fileID: 1239295258}
   - component: {fileID: 1239295257}
   m_Layer: 0
   m_Name: TrollFSMFactoryPattern
@@ -751,32 +750,7 @@ MonoBehaviour:
   maxAngularSpeedInRadPerSec: 0
   celebrationTimer: 0
   secondsToCelebrate: 2
-  fireworkPrefab: {fileID: 0}
---- !u!114 &1239295258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239295256}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767e3bd435243b44bb2ab0f1ba25c8ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  enemy: {fileID: 1850372663}
-  maxSpeed: 6
-  FOVinDEG: 70
-  waypoints:
-  - {fileID: 1326344046}
-  - {fileID: 155318814}
-  - {fileID: 1626444509}
-  - {fileID: 1887360266}
-  - {fileID: 1508109662}
-  nextWaypointIndex: 0
-  maxAngularSpeedInDegPerSec: 60
-  maxAngularSpeedInRadPerSec: 0
+  fireworkPrefab: {fileID: 9101722790945438277, guid: 05193e189db0ae84c86f9f046c799542, type: 3}
 --- !u!65 &1239295259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -935,7 +909,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 924de8bd55fd6054b9470b3ec5c766c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1068,7 +1042,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 924de8bd55fd6054b9470b3ec5c766c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1165,7 +1139,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 924de8bd55fd6054b9470b3ec5c766c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1243,7 +1217,7 @@ GameObject:
   - component: {fileID: 1696479464}
   - component: {fileID: 1696479463}
   m_Layer: 0
-  m_Name: Waypoint
+  m_Name: WaypointFSM
   m_TagString: WaypointFSM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1381,7 +1355,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 613c66cbb12377e47a34d92758ee0fe5, type: 2}
+  - {fileID: 2100000, guid: f7e745a2d9f49c64fa99957df3f18576, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1505,7 +1479,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 924de8bd55fd6054b9470b3ec5c766c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1782,7 +1756,7 @@ GameObject:
   - component: {fileID: 2020294628}
   - component: {fileID: 2020294627}
   m_Layer: 0
-  m_Name: Waypoint (2)
+  m_Name: WaypointFSM2
   m_TagString: WaypointFSM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

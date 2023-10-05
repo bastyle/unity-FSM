@@ -71,7 +71,7 @@ public class TrollFSM : MonoBehaviour
         }
         //T6 - dit>2
         // if (!CheckDistanceLess(2))
-        if (!Utilities.CheckDistanceLess(this.transform.position, enemy.transform.position, 2.0f))
+        if (!Utilities.CheckDistanceLess(this.transform.position, enemy.transform.position, Utilities.DISTANCE_TO_FIGHT))
         {
             ChangeState(TrollStates.CHASE_ENEMY);
         }
@@ -93,7 +93,7 @@ public class TrollFSM : MonoBehaviour
 
         //Check TRANSITIONS
         //T3 - Check dist<=2
-        if (Utilities.CheckDistanceLess(this.transform.position,enemy.transform.position,2.0f))
+        if (Utilities.CheckDistanceLess(this.transform.position,enemy.transform.position,Utilities.DISTANCE_TO_FIGHT))
         {
             ChangeState(TrollStates.FIGH_TENEMY);
             int damage = 10;
@@ -259,8 +259,8 @@ public class TrollFSM : MonoBehaviour
         //Vector3 fovMinus=Vector3.RotateTowards(fro)
         Gizmos.DrawLine(from, to);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(waypoints[nextWaypointIndex].position, .5f);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(waypoints[nextWaypointIndex].position, 1.2f);
 
     }
 }

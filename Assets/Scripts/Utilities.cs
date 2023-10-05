@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class Utilities
 {
+
+    public static float DISTANCE_TO_FIGHT = 2.0f;
     public static bool IsAligned(Vector3 v1, Vector3 v2, Vector3 v3, float Epsilon = 0.01f)
     {
         Vector3 heading2V2 = v2 - v1;

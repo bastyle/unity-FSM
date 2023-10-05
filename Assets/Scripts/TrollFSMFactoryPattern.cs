@@ -30,6 +30,7 @@ public class TrollFSMFactoryPattern : MonoBehaviour
     public int secondsToCelebrate = 2;
 
     public GameObject fireworkPrefab;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -228,12 +229,9 @@ public class TrollFSMFactoryPattern : MonoBehaviour
         print("HandleChaseEnemy");
         DoChaseEnemy();
 
-
-
-
         //Check TRANSITIONS
         //T3 - Check dist<=2
-        if (CheckDistanceLess(2.0f))
+        if (CheckDistanceLess(Utilities.DISTANCE_TO_FIGHT))
         {
 
             stateMachine.ChangeState(FIGHT_ENEMY);
@@ -307,19 +305,16 @@ public class TrollFSMFactoryPattern : MonoBehaviour
 
         }
 
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.black;
         Vector3 from = this.transform.position;
         Vector3 to = this.transform.position + this.transform.forward * 15;
         //Vector3 fovMinus=Vector3.RotateTowards(fro)
         Gizmos.DrawLine(from, to);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(waypoints[nextWaypointIndex].position, .5f);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(waypoints[nextWaypointIndex].position, 1.2f);
 
-        /*if (stateMachine.currentState.Name == "ChaseEnemy")
-        {
-            Gizmos.DrawSphere(enemy.transform.position,.5f);
-        }*/
+        
 
     }
 }
