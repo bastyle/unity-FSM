@@ -131,22 +131,15 @@ public class TrollFSM : MonoBehaviour
             ChangeState(TrollStates.REALIGN_WAYPOINT);
         }
         //T2 - SeeEnemy?
-        if (SeeEnemy())
+        //if (SeeEnemy())
+        if (null != enemy && Utilities.SeeEnemy(this.transform.position, enemy.transform.position, this.transform.forward, cosOfFOVover2InRAD))
         {
             ChangeState(TrollStates.CHASE_ENEMY);
         }
 
     }
 
-    private bool SeeEnemy()
-    {
-        //print("enemy::: "+ enemy);
-        if (null == enemy) return false;
-        Vector3 T2Eheading = enemy.transform.position - this.transform.position;
-        T2Eheading.Normalize();
-        float cosTheta = Vector3.Dot(this.transform.forward, T2Eheading);
-        return (cosTheta > cosOfFOVover2InRAD);
-    }
+
 
     private void DoSeekWaypoint()
     {
