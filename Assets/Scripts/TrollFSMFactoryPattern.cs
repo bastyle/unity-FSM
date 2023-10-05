@@ -132,14 +132,15 @@ public class TrollFSMFactoryPattern : MonoBehaviour
 
         //TRANSITION CHECKS
         //T5 - Enemy Dead or Lost Sight
-        if (EnemyDeadOrLostSight())
+        //if (EnemyDeadOrLostSight())
+        if (Utilities.EnemyDeadOrLostSight(enemy.GetComponent<Health>(), enemy,this.gameObject,cosOfFOVover2InRAD))
         {
             //stateMachine.ChangeState(REALIGN_WAY_POINT);
             stateMachine.ChangeState(CELEBRATION);
 
         }
         //T6 - dit>2
-        if (!CheckDistanceLess(2))
+        if (!Utilities.CheckDistanceLess(this.transform.position,enemy.transform.position,Utilities.DISTANCE_TO_FIGHT))
         {
             //ChangeState(TrollState.ChaseEnemy);
             stateMachine.ChangeState(CHASE_ENEMY);
@@ -231,24 +232,24 @@ public class TrollFSMFactoryPattern : MonoBehaviour
 
         //Check TRANSITIONS
         //T3 - Check dist<=2
-        if (CheckDistanceLess(Utilities.DISTANCE_TO_FIGHT))
+        //if (CheckDistanceLess(Utilities.DISTANCE_TO_FIGHT))
+        if(Utilities.CheckDistanceLess(this.transform.position,enemy.transform.position,Utilities.DISTANCE_TO_FIGHT))
         {
-
             stateMachine.ChangeState(FIGHT_ENEMY);
             int damage = 10;
             enemy.GetComponent<Health>().TakeDamage(damage);
         }
 
         //T5 - Check Enemy dead, or lost from sight
-        if (EnemyDeadOrLostSight())
+        //if (EnemyDeadOrLostSight())
+        if (Utilities.EnemyDeadOrLostSight(enemy.GetComponent<Health>(), enemy, this.gameObject, cosOfFOVover2InRAD))
         {
-            //ChangeState(TrollState.SeekWaypoint);
             stateMachine.CreateState(SEEW_WAY_POINT);
 
         }
     }
 
-    private bool CheckDistanceLess(float v)
+    /*private bool CheckDistanceLess(float v)
     {
 
         if (Vector3.Distance(this.transform.position, enemy.transform.position) <= v)
@@ -260,14 +261,14 @@ public class TrollFSMFactoryPattern : MonoBehaviour
             return false;
         }
 
-    }
+    }*/
 
     private void DoChaseEnemy()
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, enemy.transform.position, maxSpeed * Time.deltaTime);
     }
 
-    private bool EnemyDeadOrLostSight()
+    /*private bool EnemyDeadOrLostSight()
     {
 
         if (EnemyDead() || LostSight())
@@ -278,7 +279,7 @@ public class TrollFSMFactoryPattern : MonoBehaviour
         {
             return false;
         }
-    }
+    }*/
 
     private bool LostSight()
     {
