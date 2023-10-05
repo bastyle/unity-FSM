@@ -163,8 +163,8 @@ public class TrollFSMFactoryPattern : MonoBehaviour
 
         //TRANSITIONS
         //T1 - Aligned?
-        //if (Utilities.IsAligned(this.transform.position, waypoints[nextWaypointIndex].position, this.transform.forward, 0.01f))
-        if (IsAligned())
+        if (Utilities.IsAligned(this.transform.position, waypoints[nextWaypointIndex].position, this.transform.forward, 0.01f))
+        //if (IsAligned())
         {
             print("IsAligned...........................");
             stateMachine.ChangeState("SeekWayPoint");
@@ -182,7 +182,6 @@ public class TrollFSMFactoryPattern : MonoBehaviour
     private void DoRealign()
     {
 
-
         //int i1 = (nextWaypointIndex + 1) % waypoints.Length;
         Vector3 headingToNextWP = waypoints[nextWaypointIndex].position - this.transform.position;
         headingToNextWP.Normalize();
@@ -198,31 +197,7 @@ public class TrollFSMFactoryPattern : MonoBehaviour
 
         this.transform.position = Vector3.MoveTowards(this.transform.position, waypoints[nextWaypointIndex].position, maxSpeed * Time.deltaTime);
     }
-    private bool IsAligned()
-    {
-
-        //int i1 = (nextWaypointIndex + 1) % waypoints.Length;
-        Vector3 headingToNextWP = waypoints[nextWaypointIndex].position - this.transform.position;
-        headingToNextWP.Normalize();
-        float diff = Vector3.Distance(headingToNextWP, this.transform.forward);
-        if (diff < 0.01)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool SeeEnemy()
-    {
-        if (null == enemy) return false;
-        Vector3 T2Eheading = enemy.transform.position - this.transform.position;
-        T2Eheading.Normalize();
-        float cosTheta = Vector3.Dot(this.transform.forward, T2Eheading);
-        return (cosTheta > cosOfFOVover2InRAD);
-    }
+    
 
     private void HandleChaseEnemy()
     {
@@ -232,7 +207,6 @@ public class TrollFSMFactoryPattern : MonoBehaviour
 
         //Check TRANSITIONS
         //T3 - Check dist<=2
-        //if (CheckDistanceLess(Utilities.DISTANCE_TO_FIGHT))
         if(Utilities.CheckDistanceLess(this.transform.position,enemy.transform.position,Utilities.DISTANCE_TO_FIGHT))
         {
             stateMachine.ChangeState(FIGHT_ENEMY);
@@ -249,52 +223,14 @@ public class TrollFSMFactoryPattern : MonoBehaviour
         }
     }
 
-    /*private bool CheckDistanceLess(float v)
-    {
-
-        if (Vector3.Distance(this.transform.position, enemy.transform.position) <= v)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
-    }*/
+    
 
     private void DoChaseEnemy()
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, enemy.transform.position, maxSpeed * Time.deltaTime);
     }
 
-    /*private bool EnemyDeadOrLostSight()
-    {
-
-        if (EnemyDead() || LostSight())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }*/
-
-    private bool LostSight()
-    {
-        return !SeeEnemy();
-    }
-
-    private bool EnemyDead()
-    {
-        //TODO: Add a Health.cs script to the enemy with a public method IsAlive
-        Health health = enemy.GetComponent<Health>();
-        bool alive = health.IsAlive();
-        return !alive;
-    }
-
-
+   
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
